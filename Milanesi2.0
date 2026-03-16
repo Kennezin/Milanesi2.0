@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Secreto | Milanesi Investe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #050505;
+            --primary: #39ff14; 
+            --secondary: #00f2ff; 
+            --card: rgba(15, 15, 15, 0.9);
+            --text: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+        #canvas-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+
+        .container { max-width: 500px; margin: 0 auto; padding: 0 20px; }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .slide.active { opacity: 1; transform: translateY(0); }
+
+        .tag {
+            display: inline-block;
+            background: rgba(57, 255, 20, 0.1);
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            border: 1px solid var(--primary);
+        }
+
+        h1 { font-family: 'Space Grotesk', sans-serif; font-size: 3.5rem; line-height: 0.9; margin-bottom: 15px; }
+        h2 { font-family: 'Space Grotesk', sans-serif; color: var(--secondary); font-size: 1.8rem; margin-bottom: 20px; }
+        .highlight { color: var(--primary); text-shadow: 0 0 15px rgba(57, 255, 20, 0.5); }
+
+        .card {
+            background: var(--card);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: block;
+            background: var(--primary);
+            color: black;
+            text-align: center;
+            padding: 18px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: 900;
+            margin-top: 10px;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .btn-wa { background: #25d366; color: white; }
+
+        .price-grid { margin: 20px 0; }
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .profit { color: var(--primary); font-weight: 900; }
+
+        .footer-info { text-align: center; color: #444; font-size: 0.7rem; padding: 40px 0; }
+        
+        strong { color: var(--primary); }
+    </style>
+</head>
+<body>
+
+    <canvas id="canvas-bg"></canvas>
+
+    <div class="container">
+        
+        <!-- PÁGINA 1: CAPA -->
+        <section class="slide active">
+            <div class="tag">Exclusivo: Milanesi Investe</div>
+            <h1>O MAPA <br><span class="highlight">SECRETO.</span></h1>
+            <p style="color: #888; margin-top: 20px;">A estratégia definitiva para transformar R$ 400 em um negócio de elite.</p>
+            <div style="margin-top: 40px; font-size: 0.8rem; color: var(--secondary); animation: pulse 2s infinite;">👇 Deslize para acessar a fonte</div>
+        </section>
+
+        <!-- PÁGINA 2: O LOCAL -->
+        <section class="slide">
+            <div class="tag">A Fonte Principal</div>
+            <h2>📍 SHOPPING <br>MUNDO ORIENTAL</h2>
+            <div class="card">
+                <p><strong>Rua 25 de Março, 1081 - SP</strong></p>
+                <p style="color: #aaa; margin-top: 10px; font-size: 0.9rem;">Aqui é onde os grandes compram. Vá direto ao Shopping Mundo Oriental. Não aceite preços de revendedores de rua.</p>
+            </div>
+            <div class="card" style="border-color: var(--secondary);">
+                <p><strong>O PULO DO GATO:</strong></p>
+                <p style="font-size: 0.85rem; margin-top: 5px;">Chegue com o dinheiro no Pix. Chame no "choro". Diga que vai comprar toda semana. Abaixe o custo para aumentar sua margem.</p>
+            </div>
+        </section>
+
+        <!-- PÁGINA 3: FORNECEDORES -->
+        <section class="slide">
+            <div class="tag">Contatos Diretos</div>
+            <h2>📦 FORNECEDORES</h2>
+            <div class="card">
+                <strong>TROY VAPE</strong>
+                <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 15px;">Especialistas em promoções e giro rápido.</p>
+                <a href="https://whatsapp.com/channel/0029VabrQMaFcow2ZpNHNe3o" class="btn">ACESSAR CANAL TROY</a>
+            </div>
+            <div class="card">
+                <strong>KING VAPES</strong>
+                <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 15px;">Tabela agressiva para quem quer escala.</p>
+                <a href="https://wa.me/5511979999993" class="btn btn-wa">WHATSAPP KING</a>
+            </div>
+        </section>
+
+        <!-- PÁGINA 4: MATEMÁTICA -->
+        <section class="slide">
+            <div class="tag">Lucro de 75-80%</div>
+            <h2>📈 MARGEM DE <br>ELITE</h2>
+            <p style="color: #aaa; margin-bottom: 15px;">Foque em pods razoáveis (R$ 35-50) para garantir giro constante.</p>
+            <div class="price-grid">
+                <div class="price-item"><span>Custo R$ 35</span> <span class="profit">Venda R$ 63</span></div>
+                <div class="price-item"><span>Custo R$ 40</span> <span class="profit">Venda R$ 72</span></div>
+                <div class="price-item"><span>Custo R$ 50</span> <span class="profit">Venda R$ 90</span></div>
+            </div>
+            <div class="card" style="border: 1px dashed var(--primary); text-align: center;">
+                <p><strong>INVESTIMENTO INICIAL: R$ 400</strong></p>
+                <p class="highlight" style="font-size: 1.5rem;">RETORNO: R$ 720</p>
+            </div>
+        </section>
+
+        <!-- PÁGINA 5: MENTALIDADE -->
+        <section class="slide">
+            <div class="tag">Dono de Negócio</div>
+            <h2>🔥 FOCO, CONSTÂNCIA <br>& DISCIPLINA</h2>
+            <div class="card">
+                <strong>SUPORTE AO CLIENTE</strong>
+                <p style="font-size: 0.85rem; color: #aaa; margin-top: 5px;">Nunca deixe um cliente na mão. A fidelização gera o Pix recorrente toda semana.</p>
+            </div>
+            <div class="card">
+                <strong>CONSTÂNCIA DIÁRIA</strong>
+                <p style="font-size: 0.85rem; color: #aaa; margin-top: 5px;">Poste no Instagram e Status todo dia. O lucro de 80% é para quem não tem medo de aparecer.</p>
+            </div>
+            <div class="card">
+                <strong>DISCIPLINA FINANCEIRA</strong>
+                <p style="font-size: 0.85rem; color: #aaa; margin-top: 5px;">Vendeu? Reinvista. O dinheiro só é seu quando você tiver 100 unidades em estoque.</p>
+            </div>
+        </section>
+
+        <!-- PÁGINA 6: LOGÍSTICA -->
+        <section class="slide">
+            <div class="tag">Entrega Flash</div>
+            <h2>🛵 LOGÍSTICA</h2>
+            <div class="card">
+                <strong>99ENTREGA / MOTO:</strong>
+                <p style="font-size: 0.85rem; color: #aaa;">Taxa por conta do cliente. Rápido, seguro e sem dor de cabeça.</p>
+            </div>
+            <div class="card">
+                <strong>ESTAÇÕES:</strong>
+                <p style="font-size: 0.85rem; color: #aaa;">Custo zero de frete. Ideal para quem está começando com os R$ 400 iniciais.</p>
+            </div>
+            <div style="background: var(--primary); color: black; padding: 20px; border-radius: 20px; text-align: center; font-weight: 900; margin-top: 20px;">
+                O MAPA ESTÁ ENTREGUE. <br>BORA PRO JOGO! 🚀💨
+            </div>
+        </section>
+
+        <div class="footer-info">MILANESI INVESTE • 2024</div>
+    </div>
+
+    <script>
+        // --- FUNDO DE PARTÍCULAS ---
+        const canvas = document.getElementById('canvas-bg');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize); resize();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.color = Math.random() > 0.5 ? '#39ff14' : '#00f2ff';
+            }
+            update() {
+                this.x += this.speedX; this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0; if (this.y > canvas.height) this.y = 0;
+            }
+            draw() {
+                ctx.fillStyle = this.color; ctx.globalAlpha = 0.3;
+                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
+            }
+        }
+        for(let i=0; i<70; i++) particles.push(new Particle());
+        function animate() {
+            ctx.clearRect(0,0,canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // --- REVEAL AO ROLAR ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.2 });
+        document.querySelectorAll('.slide').forEach(s => observer.observe(s));
+    </script>
+</body>
+</html>
